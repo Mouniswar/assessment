@@ -4,8 +4,7 @@ import history from '../history';
 
 const EmployeeCreate = () => {
     return (
-        <Modal 
-            onDismiss={() => history.push('/')}
+        <Modal onDismiss={() => history.push('/')}
         />
     )
 }

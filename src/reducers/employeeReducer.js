@@ -1,11 +1,13 @@
-import _ from 'lodash';
+const INITIAL_STATE = {
+    emps: []
+}
 
-const employeeReducers = (state,action) => {
+const employeeReducers = (state = INITIAL_STATE,action) => {
     switch (action.type) {
         case 'CREATE_EMPLOYEE':
             return {...state, [action.payload.id]:action.payload}
         case 'FETCH_EMPLOYEES':
-            return {...state, ..._.mapKeys(action.payload, 'id')}
+            return {...state, emps: action.payload}
         default:
             return {...state};
     }

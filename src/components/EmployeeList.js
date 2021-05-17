@@ -10,11 +10,14 @@ class EmployeeList extends React.Component {
         console.log(this.props)
     }
 
-    renderEmployees = () => {
+    render() {
         console.log(this.props.employee);
-        return this.props.employee.emp.map((empl) => {
+        if(!this.props.employee) {
+            return;
+        }
+        const renderEmployees = this.props.employee.map((empl) => {
             return (
-                <tbody>
+                <tbody key={empl.id}>
                     <tr>
                     <td>{empl.firstname}</td>
                     <td>{empl.lastnae}</td>
@@ -27,10 +30,9 @@ class EmployeeList extends React.Component {
                     </tr>
                 </tbody>
             )
-        })   
-    }
+        })
 
-    render() {
+
         return (
             <div style={{marginTop:'30px'}}>
                 <Link to='/add' className="ui primary button">Add Employee</Link>
@@ -43,7 +45,7 @@ class EmployeeList extends React.Component {
                             <th>Actions</th>
                         </tr>
                     </thead>
-                    {this.renderEmployees()}
+                    {renderEmployees}
                 </table>
             </div>
         )
@@ -51,7 +53,7 @@ class EmployeeList extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    return {employee: state}
+    return {employee: state.emp.emps}
 }
 
 
